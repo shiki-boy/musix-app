@@ -8,6 +8,7 @@ import Tracks from './components/Tracks';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import {Provider} from './Context'
 import Track from './components/Track';
+import SearchResults from './components/SearchResults';
 
 const theme = createMuiTheme({
   typography:{
@@ -28,6 +29,7 @@ class App extends Component {
               <Search />
               <Route path="/" exact component={Tracks} />
               <Route path="/track/:id" component={Track} />
+              <Route path="/search" component={SearchResults} />
             </div>
           </MuiThemeProvider>
         </Router>

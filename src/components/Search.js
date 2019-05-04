@@ -8,6 +8,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {Redirect} from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -71,20 +72,57 @@ const styles = theme => ({
 
 class Search extends Component {
   state = {
-    show: false,
     checkedAlbum: true,
     checkedTrack: true,
     checkedArtist: true,
+    searchIt:false,
+    query: ''
   }
 
   handleChange = name => event => {
+    console.log(event.target.checked);
     this.setState({
       [name]: event.target.checked
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      searchIt : true
+    })
+  }
+
+  handleQuery = event =>{
+    this.setState({
+      query: event.target.value
+    });
+  }
+  toggleSearch = () => {
+    this.setState({
+      searchIt:false
+    })
+  }
+
   render() {
     const { classes } = this.props;
+    if (this.state.searchIt){
+      this.toggleSearch();
+      let parameters = `
+        ?artist=${this.state.checkedArtist? '1' : '0'}
+        &album=${this.state.checkedAlbum ? '1' : '0'}
+        &track=${this.state.checkedTrack ? '1' : '0'}
+        &query=${this.state.query}
+        `
+      return (
+        <Redirect 
+          to={{
+            pathname: '/search',
+            search: parameters.trim().split('\n').map(s=>s.trim()).join('')
+          }}
+        />
+      )
+    }
     return (
       <MuiThemeProvider theme={theme} >
         <Grid container direction="row">
@@ -98,32 +136,35 @@ class Search extends Component {
                 <div className={classes.searchIcon}>
                   <SearchIcon />
                 </div>
-                <InputBase
-                  placeholder="Song Title..."
-                  classes={{
-                    root: classes.inputoRoot,
-                    input: classes.inputInput,
-                  }}
-                  onClick={() => !this.state.show}
-                />
+                <form onSubmit={this.handleSubmit}>
+                  <InputBase
+                    placeholder="Song Title..."
+                    classes={{
+                      root: classes.inputoRoot,
+                      input: classes.inputInput,
+                    }}
+                    onChange={this.handleQuery}
+                    value={this.state.query}
+                  />
+                </form>
               </div>
               <div>
                 <Grid item xs container direction="row" alignContent="center" justify="center">
                   <FormGroup row>
                     <FormControlLabel control={
                       <Checkbox onChange={this.handleChange('checkedAlbum')}
-                        color="secondary" checked="this.state.checkedAlbum"
+                        color="secondary" checked={this.state.checkedAlbum}
                         value="checkedAlbum" />
                     } label="Album"
                     />
                     <FormControlLabel control={
                       <Checkbox onChange={this.handleChange('checkedTrack')}
-                        color="secondary" checked="this.state.checkedAlbum"
+                        color="secondary" checked={this.state.checkedTrack}
                         value="checkedTrack" />
                     } label="Track" />
                     <FormControlLabel control={
                       <Checkbox onChange={this.handleChange('checkedArtist')}
-                        color="secondary" checked="this.state.checkedAlbum"
+                        color="secondary" checked={this.state.checkedArtist}
                         value="checkedArtist" />
                     } label="Artist" />
                   </FormGroup>
