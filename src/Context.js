@@ -32,6 +32,10 @@ export class Provider extends Component {
     })
     if (params.access_token) {
       SpotifyApi.setAccessToken(params.access_token);
+      localStorage.setItem('access_token',params.access_token);
+    }else{
+      const token = localStorage.getItem('access_token')
+      SpotifyApi.setAccessToken(token);
     }
     SpotifyApi.getNewReleases({
       limit: 10,
