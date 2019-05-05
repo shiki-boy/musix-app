@@ -2,6 +2,9 @@
   "name": "musix",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node":"10.15.3"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",

@@ -11,7 +11,6 @@ export class Provider extends Component {
     songs: [],
     isLoggedIn: false,
     params: null,
-    searchResults:[]
   }
 
   getHashParams() {
@@ -42,7 +41,7 @@ export class Provider extends Component {
       country: "US"
     })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         let x = data.albums.items;
         let ans = []
         for (var i in x) {
@@ -58,10 +57,10 @@ export class Provider extends Component {
         this.setState({
           songs: this.state.songs.concat(ans)
         })
-        console.log(this.state);
+        // console.log(this.state);
       })
       .catch(e => {
-        window.location.replace('http://localhost:8888')
+        window.location.replace(process.env.REACT_APP_SPOTIFY_SERVER ||'http://localhost:8888')
       })
   }
 
