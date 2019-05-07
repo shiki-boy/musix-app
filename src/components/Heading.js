@@ -5,21 +5,21 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    textShadow:"-2px 3px 6px #00000070",
-    color:"white"
+    textShadow: "-2px 3px 6px #00000070",
+    background: "aliceblue",
+    marginRight:"60%",
+    marginLeft:14
   }
 })
 
 
 function Heading(props) {
-  const {classes} = props;
+  const { classes } = props;
 
   return (
-    <center>
-      <Typography className={classes.root} color="primary" variant="h3" gutterBottom>
-        {props.heading}
-      </Typography>
-    </center>
+    <Typography className={classes.root} variant="h3" gutterBottom>
+      {props.heading}
+    </Typography>
   )
 }
 

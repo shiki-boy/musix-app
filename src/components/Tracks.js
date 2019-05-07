@@ -24,7 +24,7 @@ class Tracks extends Component {
             return (
               <React.Fragment>
                 <MyDivider />
-                <Heading heading="Newly Released Tracks"/>
+                <Heading heading="New Releases"/>
                 <Grid container spacing={0} alignItems="center" direction="row">
                   {context.state.songs.map(song => {
                     return (<TrackCard song={song} key={song.id} />)

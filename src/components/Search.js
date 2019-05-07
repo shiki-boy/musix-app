@@ -12,7 +12,7 @@ import {Redirect} from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark'
+    type: 'light'
   },
   typography: {
     fontFamily: "Nunito"
@@ -29,9 +29,9 @@ const styles = theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.black, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.black, 0.25),
     },
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
@@ -50,7 +50,6 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: "white",
   },
   inputRoot: {
     color: 'inherit',
@@ -66,7 +65,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: 200,
     },
-    color: "white",
+    fontWeight:"bold"
   },
 });
 

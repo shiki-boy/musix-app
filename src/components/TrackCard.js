@@ -21,10 +21,14 @@ const theme = createMuiTheme({
 
 const styles = {
   card: {
-    maxWidth: 345,
+    maxWidth: 298,
     marginBottom: 25,
     width: "100%",
-    background: "linear-gradient(180deg, #edc70b38 62%, #fdfbfabd 97%, #844b4b26 )"
+    background: "linear-gradient(180deg, #ebeae538 62%, #fdfbfabd 97%, #844b4b26 )",
+    borderBottomRightRadius:82,
+    borderBottomLeftRadius:82,
+    borderTopLeftRadius:132,
+    borderTopRightRadius:132,
   },
   media: {
     height: 0,
@@ -42,8 +46,8 @@ function MediaCard(props) {
   const { classes } = props;
   return (
     <MuiThemeProvider theme={theme}>
-      <Grid item sm={12} md={6} container justify="center">
-        <Card className={classes.card} elevation={4}>
+      <Grid item sm={12} md={4} container justify="center">
+        <Card className={classes.card} elevation={6}>
           <CardActionArea>
             <CardMedia
               className={classes.media}

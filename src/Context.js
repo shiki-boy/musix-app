@@ -37,7 +37,7 @@ export class Provider extends Component {
       SpotifyApi.setAccessToken(token);
     }
     SpotifyApi.getNewReleases({
-      limit: 10,
+      limit: 12,
       country: "US"
     })
       .then(data => {
